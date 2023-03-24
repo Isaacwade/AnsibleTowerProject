@@ -1,0 +1,17 @@
+- name: Provision Windows VM
+  azure_rm_virtualmachine:
+    resource_group: "{{ resource_group }}"
+    name: "{{ vm_name }}"
+    public_ip_allocation_method: Dynamic
+    vm_size: "{{ vm_size }}"
+    admin_username: "{{ admin_username }}"
+    admin_password: "{{ admin_password }}"
+    virtual_network_name: "{{ virtual_network_name }}"
+    subnet_name: "{{ subnet_name }}"
+    storage_account_name: "{{ storage_account_name }}"
+    managed_disk_type: "{{ managed_disk_type }}"
+    # os_disk_size_gb: "{{ os_disk_size_gb }}" # Consider minimum disk size for windows.
+    os_type: Windows
+    image: "{{ images[vm_image] }}"
+    tags: "{{ tags }}"
+    # network_interface_names: "{{ network_interface_names | default('None') }}"

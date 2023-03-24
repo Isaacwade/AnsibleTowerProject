@@ -1,0 +1,12 @@
+- name: Enable Monitoring agent
+  tags:
+    - "monitoring-agent"
+  azure_rm_virtualmachine_extension:
+    name: OMSExtension
+    resource_group: "{{ resource_group }}"
+    virtual_machine_name: "{{ vm_name }}"
+    publisher: Microsoft.EnterpriseCloud.Monitoring
+    virtual_machine_extension_type: "{{ monitoring_agent_options[os_type].virtual_machine_extension_type }}"
+    type_handler_version: "{{ monitoring_agent_options[os_type].type_handler_version }}"
+    settings: '{"workspaceId": "{{ log_analytics_workspace_id }}"}'
+    protected_settings: '{"workspaceKey": "{{ log_analytics_workspace_key }}"}'
